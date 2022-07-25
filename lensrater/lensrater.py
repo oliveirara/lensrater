@@ -182,8 +182,10 @@ class LensRater(QMainWindow, mainwindow.Ui_MainWindow):
 
     def set_display_image(self, impath):
         min_dim = min(self.image_label.width(), self.image_label.height())
+        max_dim = max(self.image_label.width(), self.image_label.height())
         image_profile = QtGui.QImage(self.image_dir + "/" + impath)
-        image_profile = image_profile.scaled(min_dim, min_dim, \
+        image_profile = image_profile.scaled(max_dim, min_dim, \
+                    #aspectRatioMode=QtCore.Qt.IgnoreAspectRatio, \
                     aspectRatioMode=QtCore.Qt.KeepAspectRatio, \
                     transformMode=QtCore.Qt.SmoothTransformation)
         # self.image_label.setScaledContents(True)
